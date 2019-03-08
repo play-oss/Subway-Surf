@@ -1,5 +1,5 @@
-var speedtrack =0;
-function initBuffers_track(gl) {
+var speedobs = 0;
+function initBuffers_obs(gl) {
 
   // Create a buffer for the cube's vertex positions.
 
@@ -13,10 +13,10 @@ function initBuffers_track(gl) {
   // Now create an array of positions for the cube.
 
   const positions = [
-    -0.20,  -1.20, -1.0,
-  0.20,  -1.20,  -1.0,
-   0.20, -1.20,  1.0,
-   -0.20, -1.20, 1.0,
+    -0.10,  -0.990, -2.0,
+  0.10,  -0.990,  -2.0,
+   0.10, -1.190,  -2.0,
+   -0.10, -1.190, -2.0,
   ];
 
   // Now pass the list of positions into WebGL to build the
@@ -119,10 +119,10 @@ function initBuffers_track(gl) {
    
 
     
-    //0.0,  0.0,  1.0,
-     //0.0,  0.0,  1.0,
-     //0.0,  0.0,  1.0,
-     //0.0,  0.0,  1.0,
+    0.0,  0.0,  1.0,
+     0.0,  0.0,  1.0,
+     0.0,  0.0,  1.0,
+     0.0,  0.0,  1.0,
 
     // Back
      //0.0,  0.0, -1.0,
@@ -131,10 +131,10 @@ function initBuffers_track(gl) {
      //0.0,  0.0, -1.0,
 
     // Top
-     0.0,  1.0,  0.0,
-     0.0,  1.0,  0.0,
-     0.0,  1.0,  0.0,
-     0.0,  1.0,  0.0,
+     // 0.0,  1.0,  0.0,
+     // 0.0,  1.0,  0.0,
+     // 0.0,  1.0,  0.0,
+     // 0.0,  1.0,  0.0,
 
     // Bottom
     //  0.0, -1.0,  0.0,
@@ -169,9 +169,10 @@ function initBuffers_track(gl) {
   };
 }
 
-function drawScene_track(gl, programInfo, buffers, deltaTime,now,score,lives,cubeRotation,cubeRotation2,texture) 
+function drawScene_obs(gl, programInfo, buffers, deltaTime,now,score,lives,cubeRotation,cubeRotation2,texture) 
 {
-speedtrack += 0.01;
+
+speedobs += 0.01;
   const fieldOfView = 45 * Math.PI / 180;   // in radians
   const aspect = gl.canvas.clientWidth / gl.canvas.clientHeight;
   const zNear = 0.1;
@@ -182,13 +183,25 @@ speedtrack += 0.01;
   mat4.perspective(projectionMatrix,fieldOfView,aspect,zNear,zFar);
   // Set the drawing position to the "identity" point, which is
   // the center of the scene.
-  for(var i=0;i<1000;i++){
+  for(var i=0;i<50;i++){
+    var a;
+    var b;
+    var c1=0;
+    var c2= 0.607;
+    var c3=-0.607;
+    if(i%3==0)
+      a=c1;
+    if(i%3==1)
+      a=c2;
+    if(i%3==2)
+      a=c3;
+
   var modelViewMatrix = mat4.create();
   // Now move the drawing position a bit to where we want to
   // start drawing the square.
   mat4.translate(modelViewMatrix,     // destination matrix
                  modelViewMatrix,     // matrix to translate
-                 [-0.0, 0.8, -2*i+speedtrack]);  // amount to translate
+                 [a, 0.78, -i*4+speedobs]);  // amount to translate
   mat4.rotate(modelViewMatrix,  // destination matrix
               modelViewMatrix,  // matrix to rotate
               0,     // amount to rotate in radians
@@ -289,7 +302,7 @@ speedtrack += 0.01;
     gl.drawElements(gl.TRIANGLES, vertexCount, type, offset);
   }
 
-}
+ }
     return lives;
 
   }

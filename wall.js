@@ -1,3 +1,4 @@
+var speedwall=0;
 function initBuffers_wall(gl) 
 {
   // Create a buffer for the cube's vertex positions.
@@ -188,6 +189,7 @@ const positions = [
 
 function drawScene_wall(gl, programInfo, buffers, deltaTime,now,score,lives,texture) 
 {
+  speedwall +=0.01;
   if(score%100==0)
   {
     flag_periodic=1-flag_periodic;
@@ -240,7 +242,7 @@ for(var i =0;i<1000;i++)
   // start drawing the square.
     mat4.translate(modelViewMatrix,     // destination matrix
                  modelViewMatrix,     // matrix to translate
-                 [0.0, 0.0, -2*i]);  // amount to translate
+                 [0.0, 0.0, -2*i+speedwall]);  // amount to translate
    // far_pt=0.8-speedy;
 
 

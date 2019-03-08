@@ -1,7 +1,9 @@
-var speed = 0.01;
+//var speed = 0.01;
 var posr=0;
 var posl=0;
-var pos=0;
+var posu=0;
+var posd=0;
+
 function initBuffers_man(gl) {
 
   // Create a buffer for the cube's vertex positions.
@@ -127,35 +129,6 @@ function initBuffers_man(gl) {
      0.0,  0.0,  1.0,
      0.0,  0.0,  1.0,
 
-    // Back
-     //0.0,  0.0, -1.0,
-     //0.0,  0.0, -1.0,
-     //0.0,  0.0, -1.0,
-     //0.0,  0.0, -1.0,
-
-    // Top
-     // 0.0,  1.0,  0.0,
-     // 0.0,  1.0,  0.0,
-     // 0.0,  1.0,  0.0,
-     // 0.0,  1.0,  0.0,
-
-    // Bottom
-    //  0.0, -1.0,  0.0,
-    //  0.0, -1.0,  0.0,
-    //  0.0, -1.0,  0.0,
-    //  0.0, -1.0,  0.0,
-
-    // // Right
-    //  1.0,  0.0,  0.0,
-    //  1.0,  0.0,  0.0,
-    //  1.0,  0.0,  0.0,
-    //  1.0,  0.0,  0.0,
-
-    // // Left
-    // -1.0,  0.0,  0.0,
-    // -1.0,  0.0,  0.0,
-    // -1.0,  0.0,  0.0,
-    // -1.0,  0.0,  0.0
   ];
 
   gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertexNormals),
@@ -171,10 +144,21 @@ function initBuffers_man(gl) {
     indices: indexBuffer,
   };
 }
-var a=-0.707;
+var a=0;
+var b=0;
+var counteru=0;
+var counterd=0;
 function drawScene_man(gl, programInfo, buffers, deltaTime,now,score,lives,cubeRotation,cubeRotation2,texture) 
 {
 
+counteru+=0.01;
+
+if(counteru == 0.16)
+{
+  b=0;
+  counteru =0;
+  posu=0;
+}
 
 if(posr==1)
 {
@@ -194,7 +178,16 @@ if(a==0.707)
 posl=0;
 }
 
-speed -= 0.01;
+if(posu==1)
+{
+  b=0.3;
+}
+
+if(posd==1)
+{
+  b=-0.1;
+}
+//speed -= 0.01;
   const fieldOfView = 45 * Math.PI / 180;   // in radians
   const aspect = gl.canvas.clientWidth / gl.canvas.clientHeight;
   const zNear = 0.1;
@@ -211,7 +204,7 @@ speed -= 0.01;
   // start drawing the square.
   mat4.translate(modelViewMatrix,     // destination matrix
                  modelViewMatrix,     // matrix to translate
-                 [a, 0.8, speed]);  // amount to translate
+                 [a, 0.79+b, 0]);  // amount to translate
   mat4.rotate(modelViewMatrix,  // destination matrix
               modelViewMatrix,  // matrix to rotate
               0,     // amount to rotate in radians

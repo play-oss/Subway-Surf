@@ -1,4 +1,4 @@
-var speed = 0.01;
+var speedcoin = 0;
 function initBuffers_coin(gl) {
 
   // Create a buffer for the cube's vertex positions.
@@ -172,7 +172,7 @@ function initBuffers_coin(gl) {
 function drawScene_coin(gl, programInfo, buffers, deltaTime,now,score,lives,cubeRotation,cubeRotation2,texture) 
 {
 
-speed -= 0.01;
+speedcoin += 0.01;
   const fieldOfView = 45 * Math.PI / 180;   // in radians
   const aspect = gl.canvas.clientWidth / gl.canvas.clientHeight;
   const zNear = 0.1;
@@ -201,7 +201,7 @@ speed -= 0.01;
   // start drawing the square.
   mat4.translate(modelViewMatrix,     // destination matrix
                  modelViewMatrix,     // matrix to translate
-                 [a, 0.8, -i*3]);  // amount to translate
+                 [a, 0.8, -i*3+speedcoin]);  // amount to translate
   mat4.rotate(modelViewMatrix,  // destination matrix
               modelViewMatrix,  // matrix to rotate
               0,     // amount to rotate in radians

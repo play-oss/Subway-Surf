@@ -1,3 +1,4 @@
+var speedtrack2 =0;
 function initBuffers_track2(gl) {
 
   // Create a buffer for the cube's vertex positions.
@@ -74,7 +75,7 @@ function initBuffers_track2(gl) {
 
 function drawScene_track2(gl, programInfo, buffers, deltaTime,now,score,lives,cubeRotation,cubeRotation2) 
 {
-
+speedtrack2+= 0.01;
   const fieldOfView = 45 * Math.PI / 180;   // in radians
   const aspect = gl.canvas.clientWidth / gl.canvas.clientHeight;
   const zNear = 0.1;
@@ -90,7 +91,7 @@ function drawScene_track2(gl, programInfo, buffers, deltaTime,now,score,lives,cu
   // start drawing the square.
   mat4.translate(modelViewMatrix,     // destination matrix
                  modelViewMatrix,     // matrix to translate
-                 [-0.0, 0.8, -2.0]);  // amount to translate
+                 [-0.0, 0.8, -2.0+speedtrack2]);  // amount to translate
   mat4.rotate(modelViewMatrix,  // destination matrix
               modelViewMatrix,  // matrix to rotate
               0,     // amount to rotate in radians

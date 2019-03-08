@@ -112,33 +112,6 @@ function main()
     return;
   }
 
-  // Vertex shader program
-  // const vsSource = `
-  // attribute vec4 aVertexPosition;
-  // attribute vec3 aVertexNormal;
-  // attribute vec2 aTextureCoord;
-
-
-  // uniform mat4 uNormalMatrix;
-  // uniform mat4 uModelViewMatrix;
-  // uniform mat4 uProjectionMatrix;
-
-  // varying highp vec2 vTextureCoord;
-  // varying highp vec3 vLighting;
-
-  // void main(void) {
-  //   gl_Position = uProjectionMatrix * uModelViewMatrix * aVertexPosition;
-  //   vTextureCoord = aTextureCoord;
-
-  //   // Apply lighting effect
-  //   highp vec3 ambientLight = vec3(0.3, 0.3, 0.3);
-  //   highp vec3 directionalLightColor = vec3(1, 1, 1);
-  //   highp vec3 directionalVector = normalize(vec3(0, -1.5, 10));
-  //   highp vec4 transformedNormal = uNormalMatrix * vec4(aVertexNormal, 1.0);
-  //   highp float directional = max(dot(transformedNormal.xyz, directionalVector), 0.0);
-  //   vLighting = ambientLight + (directionalLightColor * directional);
-  // }
-  // `;
 
 const vsSource = `
     attribute vec4 aVertexPosition;
@@ -170,53 +143,6 @@ const vsSource = `
   `;
 
 
-  // Fragment shader program
-
-  // const fsSource = `
-  // #ifdef GL_FRAGMENT_PRECISION_HIGH
-  // precision highp float;
-  // #else
-  // precision mediump float;
-  // #endif
-
-  // varying highp vec2 vTextureCoord;
-
-  // varying highp vec3 vLighting;
-  // uniform sampler2D uSampler;
-
-  // uniform lowp float shadows;
-  // uniform lowp float highlights;
-
-  // const mediump vec3 luminanceWeighting = vec3(0.3, 0.3, 0.3);
-
-
-  // void main(void) {
-  //   highp vec4 texelColor = texture2D(uSampler, vTextureCoord);
-
-  //   mediump float luminance = dot(texelColor.rgb, luminanceWeighting);
-
-  //   //(shadows+1.0) changed to just shadows:
-  //   mediump float shadow = clamp((pow(luminance, 1.0/shadows) + (-0.76)*pow(luminance, 2.0/shadows)) - luminance, 0.0, 1.0);
-  //   mediump float highlight = clamp((1.0 - (pow(1.0-luminance, 1.0/(2.0-highlights)) + (-0.8)*pow(1.0-luminance, 2.0/(2.0-highlights)))) - luminance, -1.0, 0.0);
-  //   lowp vec3 result = vec3(0.0, 0.0, 0.0) + ((luminance + shadow + highlight) - 0.0) * ((texelColor.rgb - vec3(0.0, 0.0, 0.0))/(luminance - 0.0));
-
-  //   // blend toward white if highlights is more than 1
-  //   mediump float contrastedLuminance = ((luminance - 0.5) * 1.5) + 0.5;
-  //   mediump float whiteInterp = contrastedLuminance*contrastedLuminance*contrastedLuminance;
-  //   mediump float whiteTarget = clamp(highlights, 1.0, 2.0) - 1.0;
-  //   result = mix(result, vec3(1.0), whiteInterp*whiteTarget);
-
-  //   // blend toward black if shadows is less than 1
-  //   mediump float invContrastedLuminance = 1.0 - contrastedLuminance;
-  //   mediump float blackInterp = invContrastedLuminance*invContrastedLuminance*invContrastedLuminance;
-  //   mediump float blackTarget = 1.0 - clamp(shadows, 0.0, 1.0);
-  //   result = mix(result, vec3(0.0), blackInterp*blackTarget);
-
-
-  //   gl_FragColor = vec4(texelColor.rgb * vLighting, texelColor.a);
-  //   // gl_FragColor = vec4(result.rgb * vLighting, texelColor.a);
-  // }
-  // `;
 
   const fsSource = `
     varying highp vec2 vTextureCoord;
@@ -413,6 +339,8 @@ const programInfo_greyScale1 = {
   const buffers_track2 = initBuffers_track2(gl);
   const buffers_man = initBuffers_man(gl);
   const buffers_coin = initBuffers_coin(gl);
+  const buffers_train = initBuffers_train(gl);
+  const buffers_obs = initBuffers_obs(gl);
 
   
 
@@ -424,6 +352,8 @@ const programInfo_greyScale1 = {
   const man = loadTexture(gl, 'man.jpeg');
   const texturetrack = loadTexture(gl, 'track.jpeg');
   const texturecoin = loadTexture(gl, 'coin.jpeg');
+  const texturetrain = loadTexture(gl, 'train.jpeg');
+  const textureobs = loadTexture(gl, 'obs.jpeg');
 
 
 var ss =0;
@@ -448,6 +378,8 @@ var ss =0;
  lives=drawScene_track1(gl, programInfo1, buffers_track1, deltaTime,now,score,lives,cubeRotation,cubeRotation2);
     lives=drawScene_track2(gl, programInfo1, buffers_track2, deltaTime,now,score,lives,cubeRotation,cubeRotation2);
     lives=drawScene_coin(gl, programInfo, buffers_coin, deltaTime,now,score,lives,cubeRotation,cubeRotation2,texturecoin);
+    lives=drawScene_train(gl, programInfo, buffers_train, deltaTime,now,score,lives,cubeRotation,cubeRotation2,texturetrain);
+    lives=drawScene_obs(gl, programInfo, buffers_obs, deltaTime,now,score,lives,cubeRotation,cubeRotation2,textureobs);
 
 
          }
@@ -459,6 +391,8 @@ var ss =0;
      lives=drawScene_track1(gl, programInfo1, buffers_track1, deltaTime,now,score,lives,cubeRotation,cubeRotation2);
     lives=drawScene_track2(gl, programInfo1, buffers_track2, deltaTime,now,score,lives,cubeRotation,cubeRotation2);
     lives=drawScene_coin(gl, programInfo, buffers_coin, deltaTime,now,score,lives,cubeRotation,cubeRotation2,texturecoin);
+    lives=drawScene_train(gl, programInfo, buffers_train, deltaTime,now,score,lives,cubeRotation,cubeRotation2,texturetrain);
+    lives=drawScene_obs(gl, programInfo, buffers_obs, deltaTime,now,score,lives,cubeRotation,cubeRotation2,textureobs);
   
 
          }
@@ -472,6 +406,8 @@ var ss =0;
      lives=drawScene_track1(gl, programInfo_greyScale1, buffers_track1, deltaTime,now,score,lives,cubeRotation,cubeRotation2);
     lives=drawScene_track2(gl, programInfo_greyScale1, buffers_track2, deltaTime,now,score,lives,cubeRotation,cubeRotation2);
     lives=drawScene_coin(gl, programInfo_greyScale, buffers_coin, deltaTime,now,score,lives,cubeRotation,cubeRotation2,texturecoin);
+    lives=drawScene_train(gl, programInfo_greyScale, buffers_train, deltaTime,now,score,lives,cubeRotation,cubeRotation2,texturetrain);
+    lives=drawScene_obs(gl, programInfo_greyScale, buffers_obs, deltaTime,now,score,lives,cubeRotation,cubeRotation2,textureobs);
 
 
      }
@@ -511,6 +447,7 @@ var to_translate = 0;
 var num_val=-100;
 
 Mousetrap.bind('d', function () {
+ 
  posr=1;
  posl=0;
 })
@@ -519,8 +456,19 @@ Mousetrap.bind('a', function ()
 {
  posl=1;
  posr=0;
+ 
 })
-Mousetrap.bind('w', function ()
+
+Mousetrap.bind('w', function () {
+ posu=1;
+
+})
+
+Mousetrap.bind('s', function () 
+{
+ posd=1;
+})
+Mousetrap.bind('g', function ()
 {
   to_greyscale = 1 - to_greyscale;
 })
