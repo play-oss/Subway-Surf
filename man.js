@@ -148,11 +148,14 @@ var a=0;
 var b=0;
 var counteru=0;
 var counterd=0;
+var manposx=0;
+var manposy=0;
 function drawScene_man(gl, programInfo, buffers, deltaTime,now,score,lives,cubeRotation,cubeRotation2,texture) 
 {
-
+if(posu==1)
 counteru+=0.01;
-
+if(posd==1)
+counterd+=0.01;
 if(counteru == 0.16)
 {
   b=0;
@@ -160,11 +163,19 @@ if(counteru == 0.16)
   posu=0;
 }
 
+if(counterd == 0.16)
+{
+  b=0;
+  counterd =0;
+  posd=0;
+}
+
+
 if(posr==1)
 {
 if(a==0)
-  a=0.707;
-if(a==-0.707)
+  a=0.607;
+if(a==-0.607)
   a=0;
 posr=0;
 }
@@ -172,8 +183,8 @@ posr=0;
 if(posl==1)
 {
 if(a==0)
-  a=-0.707;
-if(a==0.707)
+  a=-0.607;
+if(a==0.607)
   a=0;
 posl=0;
 }
@@ -185,7 +196,7 @@ if(posu==1)
 
 if(posd==1)
 {
-  b=-0.1;
+  b=-0.2;
 }
 //speed -= 0.01;
   const fieldOfView = 45 * Math.PI / 180;   // in radians
@@ -199,6 +210,8 @@ if(posd==1)
   // Set the drawing position to the "identity" point, which is
   // the center of the scene.
   // for(var i=0;i<1000;i++){
+manposx=a;
+manposy=0;
   var modelViewMatrix = mat4.create();
   // Now move the drawing position a bit to where we want to
   // start drawing the square.

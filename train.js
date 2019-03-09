@@ -218,7 +218,7 @@ function initBuffers_train(gl) {
 function drawScene_train(gl, programInfo, buffers, deltaTime,now,score,lives,cubeRotation,cubeRotation2,texture) 
 {
 
-speedtrain += 0.01;
+speedtrain += 0.12;
   const fieldOfView = 45 * Math.PI / 180;   // in radians
   const aspect = gl.canvas.clientWidth / gl.canvas.clientHeight;
   const zNear = 0.1;
@@ -229,7 +229,7 @@ speedtrain += 0.01;
   mat4.perspective(projectionMatrix,fieldOfView,aspect,zNear,zFar);
   // Set the drawing position to the "identity" point, which is
   // the center of the scene.
-  for(var i=0;i<10;i++){
+  for(var i=0;i<20;i++){
     var a;
     var b;
     //var c1=0;
@@ -237,9 +237,11 @@ speedtrain += 0.01;
     var c3=-0.607;
     //if(i%3==0)
       //a=c1;
-    if(i%2==1)
+    if(i%3==1)
+      a=c3;
+    if(i%3==0)
       a=c2;
-    if(i%2==0)
+    if(i%3==2)
       a=c3;
 
   var modelViewMatrix = mat4.create();
@@ -247,7 +249,7 @@ speedtrain += 0.01;
   // start drawing the square.
   mat4.translate(modelViewMatrix,     // destination matrix
                  modelViewMatrix,     // matrix to translate
-                 [a, 0.78, -(i+1)*10+speedcoin]);  // amount to translate
+                 [a, 0.78, -(i+1)*25+speedtrain+5]);  // amount to translate
   mat4.rotate(modelViewMatrix,  // destination matrix
               modelViewMatrix,  // matrix to rotate
               0,     // amount to rotate in radians

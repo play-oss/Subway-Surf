@@ -340,7 +340,12 @@ const programInfo_greyScale1 = {
   const buffers_man = initBuffers_man(gl);
   const buffers_coin = initBuffers_coin(gl);
   const buffers_train = initBuffers_train(gl);
+  const buffers_train1 = initBuffers_train1(gl);
+
   const buffers_obs = initBuffers_obs(gl);
+  const buffers_obs1 = initBuffers_obs1(gl);
+  const buffers_boot = initBuffers_boot(gl);
+  const buffers_jet = initBuffers_jet(gl);
 
   
 
@@ -354,6 +359,11 @@ const programInfo_greyScale1 = {
   const texturecoin = loadTexture(gl, 'coin.jpeg');
   const texturetrain = loadTexture(gl, 'train.jpeg');
   const textureobs = loadTexture(gl, 'obs.jpeg');
+  const textureobs1 = loadTexture(gl, 'obs1.png');
+  const textureboot = loadTexture(gl, 'boot.jpeg');
+  const texturejet = loadTexture(gl, 'jet.jpeg');
+  const texturetrain1 = loadTexture(gl, 'train1.jpeg');
+
 
 
 var ss =0;
@@ -362,6 +372,18 @@ var ss =0;
 
   // Draw the scene repeatedly
   function render(now) {
+
+//collisions detection
+
+for(var i=0;i<150;i++)
+{
+	if(manposx==coinposx[i]&&(manposy<=coinposy[i]+0.1))
+		coinadd[i]=100;
+}
+
+
+
+
     now *= 0.001;  // convert to seconds
     const deltaTime = now - then;
     then = now;
@@ -380,6 +402,10 @@ var ss =0;
     lives=drawScene_coin(gl, programInfo, buffers_coin, deltaTime,now,score,lives,cubeRotation,cubeRotation2,texturecoin);
     lives=drawScene_train(gl, programInfo, buffers_train, deltaTime,now,score,lives,cubeRotation,cubeRotation2,texturetrain);
     lives=drawScene_obs(gl, programInfo, buffers_obs, deltaTime,now,score,lives,cubeRotation,cubeRotation2,textureobs);
+    lives=drawScene_obs1(gl, programInfo, buffers_obs1, deltaTime,now,score,lives,cubeRotation,cubeRotation2,textureobs1);
+    lives=drawScene_boot(gl, programInfo, buffers_boot, deltaTime,now,score,lives,cubeRotation,cubeRotation2,textureboot);
+    lives=drawScene_jet(gl, programInfo, buffers_jet, deltaTime,now,score,lives,cubeRotation,cubeRotation2,texturejet);
+    lives=drawScene_train1(gl, programInfo, buffers_train1, deltaTime,now,score,lives,cubeRotation,cubeRotation2,texturetrain1);
 
 
          }
@@ -393,7 +419,11 @@ var ss =0;
     lives=drawScene_coin(gl, programInfo, buffers_coin, deltaTime,now,score,lives,cubeRotation,cubeRotation2,texturecoin);
     lives=drawScene_train(gl, programInfo, buffers_train, deltaTime,now,score,lives,cubeRotation,cubeRotation2,texturetrain);
     lives=drawScene_obs(gl, programInfo, buffers_obs, deltaTime,now,score,lives,cubeRotation,cubeRotation2,textureobs);
-  
+    lives=drawScene_obs1(gl, programInfo, buffers_obs1, deltaTime,now,score,lives,cubeRotation,cubeRotation2,textureobs1);
+  lives=drawScene_boot(gl, programInfo, buffers_boot, deltaTime,now,score,lives,cubeRotation,cubeRotation2,textureboot);
+    lives=drawScene_jet(gl, programInfo, buffers_jet, deltaTime,now,score,lives,cubeRotation,cubeRotation2,texturejet);
+    lives=drawScene_train1(gl, programInfo, buffers_train1, deltaTime,now,score,lives,cubeRotation,cubeRotation2,texturetrain1);
+
 
          }
      }
@@ -408,6 +438,10 @@ var ss =0;
     lives=drawScene_coin(gl, programInfo_greyScale, buffers_coin, deltaTime,now,score,lives,cubeRotation,cubeRotation2,texturecoin);
     lives=drawScene_train(gl, programInfo_greyScale, buffers_train, deltaTime,now,score,lives,cubeRotation,cubeRotation2,texturetrain);
     lives=drawScene_obs(gl, programInfo_greyScale, buffers_obs, deltaTime,now,score,lives,cubeRotation,cubeRotation2,textureobs);
+    lives=drawScene_obs1(gl, programInfo_greyScale, buffers_obs1, deltaTime,now,score,lives,cubeRotation,cubeRotation2,textureobs1);
+lives=drawScene_boot(gl, programInfo_greyScale, buffers_boot, deltaTime,now,score,lives,cubeRotation,cubeRotation2,textureboot);
+    lives=drawScene_jet(gl, programInfo_greyScale, buffers_jet, deltaTime,now,score,lives,cubeRotation,cubeRotation2,texturejet);
+    lives=drawScene_train1(gl, programInfo_greyScale, buffers_train1, deltaTime,now,score,lives,cubeRotation,cubeRotation2,texturetrain1);
 
 
      }

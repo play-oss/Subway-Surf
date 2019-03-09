@@ -1,8 +1,5 @@
-var speedcoin = 0;
- var coinposx=Array.apply(null, Array(150)).map(function () {});
- var coinposy=Array.apply(null, Array(150)).map(function () {});
-
-function initBuffers_coin(gl) {
+var speedjet = 0;
+function initBuffers_jet(gl) {
 
   // Create a buffer for the cube's vertex positions.
 
@@ -16,10 +13,10 @@ function initBuffers_coin(gl) {
   // Now create an array of positions for the cube.
 
   const positions = [
-    -0.050,  -1.090, -2.0,
-  0.050,  -1.090,  -2.0,
-   0.050, -1.190,  -2.0,
-   -0.050, -1.190, -2.0,
+    -0.070,  -0.990, -2.0,
+  0.070,  -0.990,  -2.0,
+   0.070, -1.190,  -2.0,
+   -0.070, -1.190, -2.0,
   ];
 
   // Now pass the list of positions into WebGL to build the
@@ -171,14 +168,11 @@ function initBuffers_coin(gl) {
     indices: indexBuffer,
   };
 }
- var coinadd=Array.apply(null, Array(150)).map(function () {});
 
-for(var k=0;k<150;k++)
-coinadd[k]=0;
-function drawScene_coin(gl, programInfo, buffers, deltaTime,now,score,lives,cubeRotation,cubeRotation2,texture) 
+function drawScene_jet(gl, programInfo, buffers, deltaTime,now,score,lives,cubeRotation,cubeRotation2,texture) 
 {
 
-speedcoin += 0.01;
+speedjet += 0.01;
   const fieldOfView = 45 * Math.PI / 180;   // in radians
   const aspect = gl.canvas.clientWidth / gl.canvas.clientHeight;
   const zNear = 0.1;
@@ -189,7 +183,7 @@ speedcoin += 0.01;
   mat4.perspective(projectionMatrix,fieldOfView,aspect,zNear,zFar);
   // Set the drawing position to the "identity" point, which is
   // the center of the scene.
-  for(var i=0;i<150;i++){
+  for(var i=1;i<10;i++){
     var a;
     var b;
     var c1=0;
@@ -201,15 +195,13 @@ speedcoin += 0.01;
       a=c2;
     if(i%3==2)
       a=c3;
-coinposx[i]=a;
-coinposy[i]=-i+speedcoin;
-//console.log(coinposy[5]);
+
   var modelViewMatrix = mat4.create();
   // Now move the drawing position a bit to where we want to
   // start drawing the square.
   mat4.translate(modelViewMatrix,     // destination matrix
                  modelViewMatrix,     // matrix to translate
-                 [a, 0.8+ coinadd[i], -i+speedcoin]);  // amount to translate
+                 [a, 0.78, -i*11+speedobs+2]);  // amount to translate
   mat4.rotate(modelViewMatrix,  // destination matrix
               modelViewMatrix,  // matrix to rotate
               0,     // amount to rotate in radians

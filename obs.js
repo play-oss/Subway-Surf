@@ -183,7 +183,7 @@ speedobs += 0.01;
   mat4.perspective(projectionMatrix,fieldOfView,aspect,zNear,zFar);
   // Set the drawing position to the "identity" point, which is
   // the center of the scene.
-  for(var i=0;i<50;i++){
+  for(var i=1;i<50;i++){
     var a;
     var b;
     var c1=0;
