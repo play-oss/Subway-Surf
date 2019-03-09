@@ -218,7 +218,7 @@ manposy=speedman;
   // start drawing the square.
   mat4.translate(modelViewMatrix,     // destination matrix
                  modelViewMatrix,     // matrix to translate
-                 [a, 0.79+b, speedman]);  // amount to translate
+                 [a, 0.79+b+heigh, speedman]);  // amount to translate
   mat4.rotate(modelViewMatrix,  // destination matrix
               modelViewMatrix,  // matrix to rotate
               0,     // amount to rotate in radians

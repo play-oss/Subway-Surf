@@ -1,4 +1,6 @@
 var speedjet = 0;
+var jetposx=Array.apply(null, Array(10)).map(function () {});
+ var jetposy=Array.apply(null, Array(10)).map(function () {});
 function initBuffers_jet(gl) {
 
   // Create a buffer for the cube's vertex positions.
@@ -168,7 +170,7 @@ function initBuffers_jet(gl) {
     indices: indexBuffer,
   };
 }
-
+var heigh =0;
 function drawScene_jet(gl, programInfo, buffers, deltaTime,now,score,lives,cubeRotation,cubeRotation2,texture) 
 {
 
@@ -195,13 +197,14 @@ speedjet += an;
       a=c2;
     if(i%3==2)
       a=c3;
-
+jetposx[i]=a;
+jetposy[i]=-i*11+speedjet+2;
   var modelViewMatrix = mat4.create();
   // Now move the drawing position a bit to where we want to
   // start drawing the square.
   mat4.translate(modelViewMatrix,     // destination matrix
                  modelViewMatrix,     // matrix to translate
-                 [a, 0.78, -i*11+speedobs+2]);  // amount to translate
+                 [a, 0.78, -i*21+speedjet+2]);  // amount to translate
   mat4.rotate(modelViewMatrix,  // destination matrix
               modelViewMatrix,  // matrix to rotate
               0,     // amount to rotate in radians
