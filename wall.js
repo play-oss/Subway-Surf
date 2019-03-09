@@ -189,13 +189,13 @@ const positions = [
 
 function drawScene_wall(gl, programInfo, buffers, deltaTime,now,score,lives,texture) 
 {
-  speedwall +=0.01;
+  speedwall +=an;
   if(score%100==0)
   {
     flag_periodic=1-flag_periodic;
   }
       ctx.font = "22px Arial";
-      ctx.fillStyle = "#0095DD";
+      ctx.fillStyle = "#000000";
       var level =parseInt(score/500);
       ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
       ctx.fillText("Score:" + score  + "  Lives:" + lives + " Level:" + level, 29, 40);
@@ -203,7 +203,7 @@ function drawScene_wall(gl, programInfo, buffers, deltaTime,now,score,lives,text
       if(score%1000==0)
         flag_rotate=1-flag_rotate;
 
-  gl.clearColor(135/255,206/255,250/255, 1.0);  // Clear to black, fully opaque
+  gl.clearColor(27/255,179/255,245/255, 1.0);  // Clear to black, fully opaque
   gl.clearDepth(1.0);                 // Clear everything
   gl.enable(gl.DEPTH_TEST);           // Enable depth testing
   gl.depthFunc(gl.LEQUAL);            // Near things obscure far things

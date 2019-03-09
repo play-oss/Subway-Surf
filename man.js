@@ -1,4 +1,4 @@
-//var speed = 0.01;
+var speedman = 0;
 var posr=0;
 var posl=0;
 var posu=0;
@@ -152,6 +152,7 @@ var manposx=0;
 var manposy=0;
 function drawScene_man(gl, programInfo, buffers, deltaTime,now,score,lives,cubeRotation,cubeRotation2,texture) 
 {
+  //speedman -= 0.01;
 if(posu==1)
 counteru+=0.01;
 if(posd==1)
@@ -211,13 +212,13 @@ if(posd==1)
   // the center of the scene.
   // for(var i=0;i<1000;i++){
 manposx=a;
-manposy=0;
+manposy=speedman;
   var modelViewMatrix = mat4.create();
   // Now move the drawing position a bit to where we want to
   // start drawing the square.
   mat4.translate(modelViewMatrix,     // destination matrix
                  modelViewMatrix,     // matrix to translate
-                 [a, 0.79+b, 0]);  // amount to translate
+                 [a, 0.79+b, speedman]);  // amount to translate
   mat4.rotate(modelViewMatrix,  // destination matrix
               modelViewMatrix,  // matrix to rotate
               0,     // amount to rotate in radians

@@ -178,7 +178,7 @@ coinadd[k]=0;
 function drawScene_coin(gl, programInfo, buffers, deltaTime,now,score,lives,cubeRotation,cubeRotation2,texture) 
 {
 
-speedcoin += 0.01;
+speedcoin += an;
   const fieldOfView = 45 * Math.PI / 180;   // in radians
   const aspect = gl.canvas.clientWidth / gl.canvas.clientHeight;
   const zNear = 0.1;

@@ -172,7 +172,7 @@ function initBuffers_jet(gl) {
 function drawScene_jet(gl, programInfo, buffers, deltaTime,now,score,lives,cubeRotation,cubeRotation2,texture) 
 {
 
-speedjet += 0.01;
+speedjet += an;
   const fieldOfView = 45 * Math.PI / 180;   // in radians
   const aspect = gl.canvas.clientWidth / gl.canvas.clientHeight;
   const zNear = 0.1;

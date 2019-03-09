@@ -8,7 +8,7 @@ var far_pt=0;
 var flag_periodic = 0;
 var flagvariable = 0;
 var finalvar = 0;
-
+var an = 0.01;
 
 // var ctx;
 var speedy=0;
@@ -187,7 +187,7 @@ const vsSource = `
     lowp vec3 result = vec3(0.0, 0.0, 0.0) + ((luminance + shadow + highlight) - 0.0) * ((texelColor.rgb - vec3(0.0, 0.0, 0.0))/(luminance - 0.0));
 
     // blend toward white if highlights is more than 1
-    mediump float contrastedLuminance = ((luminance - 0.5) * 1.5) + 0.5;
+    mediump float contrastedLuminance = ((luminance - 0.5) * 1.5) + 1.5;
     mediump float whiteInterp = contrastedLuminance*contrastedLuminance*contrastedLuminance;
     mediump float whiteTarget = clamp(highlights, 1.0, 2.0) - 1.0;
     result = mix(result, vec3(1.0), whiteInterp*whiteTarget);
@@ -346,6 +346,7 @@ const programInfo_greyScale1 = {
   const buffers_obs1 = initBuffers_obs1(gl);
   const buffers_boot = initBuffers_boot(gl);
   const buffers_jet = initBuffers_jet(gl);
+  const buffers_cloud = initBuffers_cloud(gl);
 
   
 
@@ -363,6 +364,7 @@ const programInfo_greyScale1 = {
   const textureboot = loadTexture(gl, 'boot.jpeg');
   const texturejet = loadTexture(gl, 'jet.jpeg');
   const texturetrain1 = loadTexture(gl, 'train1.jpeg');
+  const texturec = loadTexture(gl, 'cloud.jpeg');
 
 
 
@@ -406,6 +408,7 @@ for(var i=0;i<150;i++)
     lives=drawScene_boot(gl, programInfo, buffers_boot, deltaTime,now,score,lives,cubeRotation,cubeRotation2,textureboot);
     lives=drawScene_jet(gl, programInfo, buffers_jet, deltaTime,now,score,lives,cubeRotation,cubeRotation2,texturejet);
     lives=drawScene_train1(gl, programInfo, buffers_train1, deltaTime,now,score,lives,cubeRotation,cubeRotation2,texturetrain1);
+    lives=drawScene_cloud(gl, programInfo, buffers_cloud, deltaTime,now,score,lives,cubeRotation,cubeRotation2,texturec);
 
 
          }

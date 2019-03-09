@@ -172,7 +172,7 @@ function initBuffers_obs(gl) {
 function drawScene_obs(gl, programInfo, buffers, deltaTime,now,score,lives,cubeRotation,cubeRotation2,texture) 
 {
 
-speedobs += 0.01;
+speedobs += an;
   const fieldOfView = 45 * Math.PI / 180;   // in radians
   const aspect = gl.canvas.clientWidth / gl.canvas.clientHeight;
   const zNear = 0.1;

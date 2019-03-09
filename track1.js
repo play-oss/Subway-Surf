@@ -76,7 +76,7 @@ function initBuffers_track1(gl) {
 function drawScene_track1(gl, programInfo, buffers, deltaTime,now,score,lives,cubeRotation,cubeRotation2) 
 {
 
-sppedtrack1+=0.01;
+sppedtrack1+=an;
   const fieldOfView = 45 * Math.PI / 180;   // in radians
   const aspect = gl.canvas.clientWidth / gl.canvas.clientHeight;
   const zNear = 0.1;
