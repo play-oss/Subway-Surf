@@ -1,4 +1,6 @@
 var speedobs1 = 0;
+var obs1posx=Array.apply(null, Array(50)).map(function () {});
+ var obs1posy=Array.apply(null, Array(50)).map(function () {});
 function initBuffers_obs1(gl) {
 
   // Create a buffer for the cube's vertex positions.
@@ -138,7 +140,8 @@ speedobs1 += an;
       a=c2;
     if(i%3==2)
       a=c3;
-
+obs1posx[i]=a;
+obs1posy[i]=-(i*4)+3+speedobs;
   var modelViewMatrix = mat4.create();
   // Now move the drawing position a bit to where we want to
   // start drawing the square.

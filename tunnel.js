@@ -8,7 +8,7 @@ var far_pt=0;
 var flag_periodic = 0;
 var flagvariable = 0;
 var finalvar = 0;
-var an = 0.01;
+var an = 0.03;
 
 // var ctx;
 var speedy=0;
@@ -371,16 +371,42 @@ const programInfo_greyScale1 = {
 var ss =0;
   var then = 0;
   var score = 0;
-
+var chk=0;
+var slow=0;
   // Draw the scene repeatedly
   function render(now) {
 
 //collisions detection
+if(an==0.01)
+{
+	slow+=0.01;
+}
 
+if(slow>=2)
+{
+	slow=0;
+	an=0.03;
+}
 for(var i=0;i<150;i++)
 {
 	if(manposx==coinposx[i]&&(manposy<=coinposy[i]+0.1))
-		coinadd[i]=100;
+		{coinadd[i]=100;}
+}
+
+for(var i=1;i<50;i++)
+{
+	console.log(obsposx[i]);
+	if(manposx==obsposx[i]&&(manposy<=obsposy[i]+0.1)&&(manposy-obsposy[i]>=0)&& posu !=1)
+		{an=0.01;}
+	
+}
+
+for(var i=1;i<50;i++)
+{
+	if(manposx==obs1posx[i]&&(manposy<=obs1posy[i]+0.1)&&(manposy-obs1posy[i]>=0)&& posd !=1)
+		{alert("YOU LOST, Click OK to play the game again!");
+     document.location.reload();}
+	
 }
 
 

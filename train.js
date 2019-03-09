@@ -249,7 +249,7 @@ speedtrain += 0.12;
   // start drawing the square.
   mat4.translate(modelViewMatrix,     // destination matrix
                  modelViewMatrix,     // matrix to translate
-                 [a, 0.78, -(i+1)*25+speedtrain+5]);  // amount to translate
+                 [a, 0.78, -(i+1)*50+speedtrain+5]);  // amount to translate
   mat4.rotate(modelViewMatrix,  // destination matrix
               modelViewMatrix,  // matrix to rotate
               0,     // amount to rotate in radians

@@ -1,4 +1,8 @@
 var speedobs = 0;
+var obsposx=Array.apply(null, Array(50)).map(function () {});
+ var obsposy=Array.apply(null, Array(50)).map(function () {});
+ var obsadd=Array.apply(null, Array(50)).map(function () {});
+
 function initBuffers_obs(gl) {
 
   // Create a buffer for the cube's vertex positions.
@@ -195,6 +199,8 @@ speedobs += an;
       a=c2;
     if(i%3==2)
       a=c3;
+  obsposx[i]=a;
+  obsposy[i]=-i*4+speedobs;
 
   var modelViewMatrix = mat4.create();
   // Now move the drawing position a bit to where we want to
