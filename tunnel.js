@@ -390,16 +390,17 @@ if(slow>=2)
 	an=0.03;
 }
 
-if(heigh==1)
-{
-	hh+=0.01;
-}
+// if(heigh==1)
+// {
+// 	hh+=0.01;
+// }
 
-if(hh>=2)
-{
-	hh=0;
-	heigh=0;
-}
+// if(hh>=2)
+// {
+// 	hh=0;
+// 	heigh=0;
+// 	an=0.03;
+// }
 for(var i=0;i<150;i++)
 {
 	if(manposx==coinposx[i]&&(manposy<=coinposy[i]+0.1)&& heigh!=1)
@@ -408,14 +409,14 @@ for(var i=0;i<150;i++)
 
 for(var i=1;i<50;i++)
 {
-	if(manposx==obsposx[i]&&(manposy<=obsposy[i]+0.1)&&(manposy-obsposy[i]>=0)&& posu !=1 && heigh!=1)
+	if(manposx==obsposx[i]&&(manposy<=obsposy[i]+0.1)&&(manposy-obsposy[i]>=0)&& posu !=1 && hflag!=1)
 		{an=0.01;}
 	
 }
 
 for(var i=1;i<50;i++)
 {
-	if(manposx==obs1posx[i]&&(manposy<=obs1posy[i]+0.1)&&(manposy-obs1posy[i]>=0)&& posd !=1 && heigh!=1)
+	if(manposx==obs1posx[i]&&(manposy<=obs1posy[i]+0.1)&&(manposy-obs1posy[i]>=0)&& posd !=1 && hflag!=1 )
 		{alert("YOU LOST, Click OK to play the game again!");
      document.location.reload();}
 	
@@ -424,7 +425,7 @@ for(var i=1;i<50;i++)
 for(var i=1;i<10;i++)
 {
 	if(manposx==jetposx[i]&&(manposy<=jetposy[i]+0.1)&&(manposy-jetposy[i]>=0))
-		{heigh=1;}
+		{hflag=1;an=0.12;}
 	
 }
 

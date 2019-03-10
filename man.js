@@ -3,7 +3,7 @@ var posr=0;
 var posl=0;
 var posu=0;
 var posd=0;
-
+var hflag=0;
 function initBuffers_man(gl) {
 
   // Create a buffer for the cube's vertex positions.
@@ -150,9 +150,13 @@ var counteru=0;
 var counterd=0;
 var manposx=0;
 var manposy=0;
+var counterh=0;
+var hei=0;
 function drawScene_man(gl, programInfo, buffers, deltaTime,now,score,lives,cubeRotation,cubeRotation2,texture) 
 {
   //speedman -= 0.01;
+if(hflag==1)
+counterh+=0.01;
 if(posu==1)
 counteru+=0.01;
 if(posd==1)
@@ -169,6 +173,14 @@ if(counterd == 0.16)
   b=0;
   counterd =0;
   posd=0;
+}
+
+if(counterh >= 2)
+{
+  hei=0;
+  counterh =0;
+  hflag=0;
+  an=0.06;
 }
 
 
@@ -199,6 +211,8 @@ if(posd==1)
 {
   b=-0.2;
 }
+if(hflag==1)
+hei=0.8;
 //speed -= 0.01;
   const fieldOfView = 45 * Math.PI / 180;   // in radians
   const aspect = gl.canvas.clientWidth / gl.canvas.clientHeight;
@@ -218,7 +232,7 @@ manposy=speedman;
   // start drawing the square.
   mat4.translate(modelViewMatrix,     // destination matrix
                  modelViewMatrix,     // matrix to translate
-                 [a, 0.79+b+heigh, speedman]);  // amount to translate
+                 [a, hei+0.79+b, speedman]);  // amount to translate
   mat4.rotate(modelViewMatrix,  // destination matrix
               modelViewMatrix,  // matrix to rotate
               0,     // amount to rotate in radians
