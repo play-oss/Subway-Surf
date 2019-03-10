@@ -357,20 +357,20 @@ const programInfo_greyScale1 = {
 
  // const buffers_obstacle = initBuffers_obstacle(gl);
   //const buffers_obstacle2 = initBuffers_obstacle2(gl);
-  const texture1 = loadTexture(gl, 'cubetexture.jpeg');
-  const man = loadTexture(gl, 'man.jpeg');
-  const texturetrack = loadTexture(gl, 'track.jpeg');
-  const texturecoin = loadTexture(gl, 'coin.jpeg');
-  const texturetrain = loadTexture(gl, 'train.jpeg');
-  const textureobs = loadTexture(gl, 'obs.jpeg');
-  const textureobs1 = loadTexture(gl, 'obs1.png');
-  const textureboot = loadTexture(gl, 'boot.jpeg');
-  const texturejet = loadTexture(gl, 'jet.jpeg');
-  const texturetrain1 = loadTexture(gl, 'train1.jpeg');
-  const texturec = loadTexture(gl, 'cloud.jpeg');
-  const texturek = loadTexture(gl, 'key.jpeg');
-  const texturep = loadTexture(gl, 'police.jpeg');
-  const textured = loadTexture(gl, 'dog.jpeg');
+  const texture1 = loadTexture(gl, 'assets/cubetexture.jpeg');
+  const man = loadTexture(gl, 'assets/man.jpeg');
+  const texturetrack = loadTexture(gl, 'assets/track.jpeg');
+  const texturecoin = loadTexture(gl, 'assets/coin.jpeg');
+  const texturetrain = loadTexture(gl, 'assets/train.jpeg');
+  const textureobs = loadTexture(gl, 'assets/obs.jpeg');
+  const textureobs1 = loadTexture(gl, 'assets/obs1.png');
+  const textureboot = loadTexture(gl, 'assets/boot.jpeg');
+  const texturejet = loadTexture(gl, 'assets/jet.jpeg');
+  const texturetrain1 = loadTexture(gl, 'assets/train1.jpeg');
+  const texturec = loadTexture(gl, 'assets/cloud.jpeg');
+  const texturek = loadTexture(gl, 'assets/key.jpeg');
+  const texturep = loadTexture(gl, 'assets/police.jpeg');
+  const textured = loadTexture(gl, 'assets/dog.jpeg');
 
 
 
@@ -447,6 +447,8 @@ for(var i=1;i<50;i++)
 	if(manposx==obs1posx[i]&&(manposy<=obs1posy[i]+0.1)&&(manposy-obs1posy[i]>=0)&& posd !=1 && hflag!=1 )
 		{
 			end=1;
+    // lives=drawScene_police(gl, programInfo, buffers_police, deltaTime,now,score,lives,cubeRotation,cubeRotation2,texturep);
+			
 			alert("YOU LOST, Click OK to play the game again!");
      document.location.reload();
  }
