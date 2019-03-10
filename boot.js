@@ -1,4 +1,9 @@
 var speedboot = 0;
+var bootposx=Array.apply(null, Array(10)).map(function () {});
+ var bootposy=Array.apply(null, Array(10)).map(function () {});
+ var bootadd=Array.apply(null, Array(10)).map(function () {});
+for(var k=1;k<10;k++)
+bootadd[k]=0;
 function initBuffers_boot(gl) {
 
   // Create a buffer for the cube's vertex positions.
@@ -196,12 +201,14 @@ speedboot += an;
     if(i%3==2)
       a=c3;
 
+bootposx[i]=a;
+bootposy[i]=-i*12+speedobs+2.5;
   var modelViewMatrix = mat4.create();
   // Now move the drawing position a bit to where we want to
   // start drawing the square.
   mat4.translate(modelViewMatrix,     // destination matrix
                  modelViewMatrix,     // matrix to translate
-                 [a, 0.78, -i*12+speedobs+2.5]);  // amount to translate
+                 [a, 0.78+bootadd[i], -i*12+speedobs+2.5]);  // amount to translate
   mat4.rotate(modelViewMatrix,  // destination matrix
               modelViewMatrix,  // matrix to rotate
               0,     // amount to rotate in radians

@@ -203,6 +203,12 @@ function drawScene_wall(gl, programInfo, buffers, deltaTime,now,score,lives,text
       if(score%1000==0)
         flag_rotate=1-flag_rotate;
 
+
+if(level==8)
+  {alert("YOU WON, Click OK to play the game again!");
+     document.location.reload();}
+
+
   gl.clearColor(27/255,179/255,245/255, 1.0);  // Clear to black, fully opaque
   gl.clearDepth(1.0);                 // Clear everything
   gl.enable(gl.DEPTH_TEST);           // Enable depth testing

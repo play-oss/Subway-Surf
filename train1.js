@@ -1,4 +1,7 @@
 var speedtrain1 = 0;
+var t1posx=Array.apply(null, Array(20)).map(function () {});
+ var t1posy=Array.apply(null, Array(20)).map(function () {});
+ var t1add=Array.apply(null, Array(20)).map(function () {});
 function initBuffers_train1(gl) {
 
   // Create a buffer for the cube's vertex positions.
@@ -218,6 +221,12 @@ function initBuffers_train1(gl) {
 function drawScene_train1(gl, programInfo, buffers, deltaTime,now,score,lives,cubeRotation,cubeRotation2,texture) 
 {
 
+for(var i=0;i<20;i++)
+{
+  if(manposx==t1posx[i]&&(manposy<=t1posy[i]+0.1)&&(manposy-t1posy[i]>=0))
+    {lives--;}
+  
+}
 speedtrain1 += 0.12;
   const fieldOfView = 45 * Math.PI / 180;   // in radians
   const aspect = gl.canvas.clientWidth / gl.canvas.clientHeight;
@@ -243,7 +252,8 @@ speedtrain1 += 0.12;
       a=c3;
     if(i%3==2)
       a=c2;
-
+t1posx[i]=a;
+t1posy[i]=-(i+1)*50+speedtrain1;
   var modelViewMatrix = mat4.create();
   // Now move the drawing position a bit to where we want to
   // start drawing the square.

@@ -4,6 +4,7 @@ var posl=0;
 var posu=0;
 var posd=0;
 var hflag=0;
+var jflag=0;
 function initBuffers_man(gl) {
 
   // Create a buffer for the cube's vertex positions.
@@ -152,6 +153,7 @@ var manposx=0;
 var manposy=0;
 var counterh=0;
 var hei=0;
+var counterj=0;
 function drawScene_man(gl, programInfo, buffers, deltaTime,now,score,lives,cubeRotation,cubeRotation2,texture) 
 {
   //speedman -= 0.01;
@@ -161,11 +163,21 @@ if(posu==1)
 counteru+=0.01;
 if(posd==1)
 counterd+=0.01;
+if(jflag==1)
+counterj+=0.01;
 if(counteru == 0.16)
 {
   b=0;
   counteru =0;
   posu=0;
+  //jflag=0;
+}
+if(counterj >= 0.8)
+{
+
+ counterj=0;
+  jflag=0;
+  b=0.3;
 }
 
 if(counterd == 0.16)
@@ -202,9 +214,13 @@ if(a==0.607)
 posl=0;
 }
 
-if(posu==1)
+if(posu==1 && jflag!=1)
 {
   b=0.3;
+}
+if(posu==1 && jflag==1)
+{
+  b=0.7;
 }
 
 if(posd==1)

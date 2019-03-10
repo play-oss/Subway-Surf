@@ -347,7 +347,10 @@ const programInfo_greyScale1 = {
   const buffers_boot = initBuffers_boot(gl);
   const buffers_jet = initBuffers_jet(gl);
   const buffers_cloud = initBuffers_cloud(gl);
-
+  const buffers_key = initBuffers_key(gl);
+  const buffers_police = initBuffers_police(gl);
+  const buffers_dog = initBuffers_dog(gl);
+  
   
 
   //const buffers_wall1 = initBuffers_wall1(gl);
@@ -365,6 +368,9 @@ const programInfo_greyScale1 = {
   const texturejet = loadTexture(gl, 'jet.jpeg');
   const texturetrain1 = loadTexture(gl, 'train1.jpeg');
   const texturec = loadTexture(gl, 'cloud.jpeg');
+  const texturek = loadTexture(gl, 'key.jpeg');
+  const texturep = loadTexture(gl, 'police.jpeg');
+  const textured = loadTexture(gl, 'dog.jpeg');
 
 
 
@@ -375,8 +381,30 @@ var chk=0;
 var slow=0;
 var hh=0;
 var heigh=0;
+var beg=1;
+var bc=0;
+var end=0;
+var score1=0;
   // Draw the scene repeatedly
   function render(now) {
+// if(level==8)
+// 	{alert("YOU WON, Click OK to play the game again!");
+//      document.location.reload();}
+
+if(beg==1)
+{
+	bc+=0.01;
+}
+
+if(bc>=2)
+{beg=0;}
+  	if(lives==0)
+  		{
+  			end=1;
+  			alert("YOU LOST, Click OK to play the game again!");
+     document.location.reload();}
+
+
 
 //collisions detection
 if(an==0.01)
@@ -404,7 +432,7 @@ if(slow>=2)
 for(var i=0;i<150;i++)
 {
 	if(manposx==coinposx[i]&&(manposy<=coinposy[i]+0.1)&& heigh!=1)
-		{coinadd[i]=100;}
+		{coinadd[i]=100;score1+=10;}
 }
 
 for(var i=1;i<50;i++)
@@ -417,15 +445,25 @@ for(var i=1;i<50;i++)
 for(var i=1;i<50;i++)
 {
 	if(manposx==obs1posx[i]&&(manposy<=obs1posy[i]+0.1)&&(manposy-obs1posy[i]>=0)&& posd !=1 && hflag!=1 )
-		{alert("YOU LOST, Click OK to play the game again!");
-     document.location.reload();}
+		{
+			end=1;
+			alert("YOU LOST, Click OK to play the game again!");
+     document.location.reload();
+ }
 	
 }
 
 for(var i=1;i<10;i++)
 {
 	if(manposx==jetposx[i]&&(manposy<=jetposy[i]+0.1)&&(manposy-jetposy[i]>=0))
-		{hflag=1;an=0.12;}
+		{hflag=1;an=0.12;jetadd[i]=100;}
+	
+}
+
+for(var i=1;i<10;i++)
+{
+	if(manposx==bootposx[i]&&(manposy<=bootposy[i]+0.1)&&(manposy-bootposy[i]>=0))
+		{jflag=1;bootadd[i]=100;}
 	
 }
 
@@ -454,6 +492,10 @@ for(var i=1;i<10;i++)
     lives=drawScene_jet(gl, programInfo, buffers_jet, deltaTime,now,score,lives,cubeRotation,cubeRotation2,texturejet);
     lives=drawScene_train1(gl, programInfo, buffers_train1, deltaTime,now,score,lives,cubeRotation,cubeRotation2,texturetrain1);
     lives=drawScene_cloud(gl, programInfo, buffers_cloud, deltaTime,now,score,lives,cubeRotation,cubeRotation2,texturec);
+    lives=drawScene_key(gl, programInfo, buffers_key, deltaTime,now,score,lives,cubeRotation,cubeRotation2,texturek);
+    lives=drawScene_dog(gl, programInfo, buffers_dog, deltaTime,now,score,lives,cubeRotation,cubeRotation2,textured);
+    if(beg || (an==0.01) || (end==1))
+    lives=drawScene_police(gl, programInfo, buffers_police, deltaTime,now,score,lives,cubeRotation,cubeRotation2,texturep);
 
 
          }
@@ -471,7 +513,10 @@ for(var i=1;i<10;i++)
   lives=drawScene_boot(gl, programInfo, buffers_boot, deltaTime,now,score,lives,cubeRotation,cubeRotation2,textureboot);
     lives=drawScene_jet(gl, programInfo, buffers_jet, deltaTime,now,score,lives,cubeRotation,cubeRotation2,texturejet);
     lives=drawScene_train1(gl, programInfo, buffers_train1, deltaTime,now,score,lives,cubeRotation,cubeRotation2,texturetrain1);
-
+    lives=drawScene_key(gl, programInfo, buffers_key, deltaTime,now,score,lives,cubeRotation,cubeRotation2,texturek);
+lives=drawScene_dog(gl, programInfo, buffers_dog, deltaTime,now,score,lives,cubeRotation,cubeRotation2,textured);
+    if(beg || (an==0.01) || (end==1))
+    lives=drawScene_police(gl, programInfo, buffers_police, deltaTime,now,score,lives,cubeRotation,cubeRotation2,texturep);
 
          }
      }
@@ -490,7 +535,10 @@ for(var i=1;i<10;i++)
 lives=drawScene_boot(gl, programInfo_greyScale, buffers_boot, deltaTime,now,score,lives,cubeRotation,cubeRotation2,textureboot);
     lives=drawScene_jet(gl, programInfo_greyScale, buffers_jet, deltaTime,now,score,lives,cubeRotation,cubeRotation2,texturejet);
     lives=drawScene_train1(gl, programInfo_greyScale, buffers_train1, deltaTime,now,score,lives,cubeRotation,cubeRotation2,texturetrain1);
-
+    lives=drawScene_key(gl, programInfo_greyScale, buffers_key, deltaTime,now,score,lives,cubeRotation,cubeRotation2,texturek);
+lives=drawScene_dog(gl, programInfo_greyScale, buffers_dog, deltaTime,now,score,lives,cubeRotation,cubeRotation2,textured);
+    if(beg || (an==0.01) || (end==1))
+    lives=drawScene_police(gl, programInfo_greyScale, buffers_police, deltaTime,now,score,lives,cubeRotation,cubeRotation2,texturep);
 
      }
 
